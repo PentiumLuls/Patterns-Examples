@@ -14,4 +14,12 @@ public class Duck {
     public void performFly() {
         flyBehavior.fly();
     }
+
+    public void setQuackBehavior(QuackBehavior quackBehavior) {
+        this.quackBehavior = quackBehavior;
+    }
+
+    public void setFlyBehavior(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
 }
