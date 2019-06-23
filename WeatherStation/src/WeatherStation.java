@@ -1,6 +1,7 @@
 import displays.CurrentConditionsDisplay;
 import displays.DisplayElement;
 import displays.StatisticsDisplay;
+import weatherData.WeatherData;
 
 public class WeatherStation {
 
@@ -10,8 +11,8 @@ public class WeatherStation {
         DisplayElement currentDisplay = new CurrentConditionsDisplay(weatherData);
         DisplayElement statisticsDisplay = new StatisticsDisplay(weatherData);
 
-        weatherData.setMeasurements(80.5f, 65, 30.4f);
+        weatherData.setMeasurements(80, 65, 30);
         weatherData.setMeasurements(82, 70, 20);
-        weatherData.setMeasurements(71, 93.2f, 24.6f);
+        weatherData.setMeasurements(72, 93, 24.5f);
     }
 }

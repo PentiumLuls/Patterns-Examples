@@ -1,19 +1,19 @@
 package displays;
 
-import observer.Observer;
-import subject.Subject;
+import weatherData.WeatherData;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 public class StatisticsDisplay implements Observer, DisplayElement {
-    private final Subject weatherData;
+    private Observable observable;
     private List<Float> temperatures;
 
-    public StatisticsDisplay(Subject weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+    public StatisticsDisplay(Observable observable) {
+        this.observable = observable;
+        observable.addObserver(this);
         temperatures = new ArrayList<>();
     }
 
@@ -22,14 +22,15 @@ public class StatisticsDisplay implements Observer, DisplayElement {
         System.out.println("Avg/Max/Min temperature: " + getStatistic());
     }
 
-    private String getStatistic() {
-        return getAverage() + "/" + getMax() + "/" + getMin();
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof WeatherData)
+        this.temperatures.add(((WeatherData) o).getTemperature());
+        display();
     }
 
-    @Override
-    public void update(float temperature, float humidity, float pressure) {
-        this.temperatures.add(temperature);
-        display();
+    private String getStatistic() {
+        return getAverage() + "/" + getMax() + "/" + getMin();
     }
 
     private float getAverage() {
