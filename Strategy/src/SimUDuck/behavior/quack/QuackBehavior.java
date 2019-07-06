@@ -1,0 +1,5 @@
+package SimUDuck.behavior.quack;
+
+public interface QuackBehavior {
+    void quack();
+}
