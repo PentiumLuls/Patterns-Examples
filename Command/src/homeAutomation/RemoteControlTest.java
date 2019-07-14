@@ -1,9 +1,6 @@
 package homeAutomation;
 
-import homeAutomation.command.CeilingFanHigherCommand;
-import homeAutomation.command.CeilingFanLowerCommand;
-import homeAutomation.command.LightOffCommand;
-import homeAutomation.command.LightOnCommand;
+import homeAutomation.command.*;
 import homeAutomation.device.Light;
 import homeAutomation.device.CeilingFan;
 
@@ -26,5 +23,15 @@ public class RemoteControlTest {
         control.onButtonWasPushed(1);
         control.offButtonWasPushed(0);
         control.onButtonWasPushed(4);
+
+        System.out.println("\n=== Macro command test ===");
+        Command[] partyOn = {lightOnCommand, ceilingFanHigherCommand};
+        Command[] partyOff = {lightOffCommand, ceilingFanLowerCommand};
+
+        MacroCommand partyOnCommand = new MacroCommand(partyOn);
+        MacroCommand partyOffCommand = new MacroCommand(partyOff);
+        control.setCommand(2, partyOnCommand, partyOffCommand);
+        control.onButtonWasPushed(2);
+        control.offButtonWasPushed(2);
     }
 }
